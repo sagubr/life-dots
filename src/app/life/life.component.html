@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Visualize sua vida em meses</h1>
+  <p>Cada coração representa um mês vivido. Informe sua data de nascimento e veja quantos meses já passaram.</p>
+  <div class="date-picker">
+    <mat-form-field appearance="fill">
+      <mat-label>Data de Nascimento</mat-label>
+      <input matInput [matDatepicker]="picker"
+             mask="d0/M0/0000"
+             (dateChange)="onDateChange($event)"
+             placeholder="Escolha uma data">
+      <mat-datepicker-toggle matIconSuffix
+                             [for]="picker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="update-button">
+    <button mat-fab (click)="updateLife()">
+      <mat-icon>sync</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="container">
+  <div class="months-grid">
+    <app-month *ngFor="let month of life" [month]="month"></app-month>
+  </div>
+</div>
