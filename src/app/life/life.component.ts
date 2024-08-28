@@ -8,6 +8,7 @@ import {MatInputModule} from "@angular/material/input";
 import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
 
 import {provideNativeDateAdapter} from "@angular/material/core";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-life',
@@ -19,7 +20,8 @@ import {provideNativeDateAdapter} from "@angular/material/core";
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    FormsModule
   ],
   providers: [
     provideNativeDateAdapter(),
@@ -30,8 +32,7 @@ import {provideNativeDateAdapter} from "@angular/material/core";
 })
 export class LifeComponent implements OnInit {
 
-  readonly LIFE_MONTH_MAX: number = 1200;
-
+  year: number = 0;
   life: Month[] = [];
   dateOfBirth: Date = new Date();
 
@@ -45,10 +46,10 @@ export class LifeComponent implements OnInit {
   }
 
   updateLife() {
-    if (this.dateOfBirth) {
+    if (this.dateOfBirth && this.year) {
       const now = new Date();
       const monthsLived = this.calculateMonthsLived(this.dateOfBirth, now);
-      this.life = Array.from({length: this.LIFE_MONTH_MAX}, (_, i) => ({
+      this.life = Array.from({length: this.year * 12}, (_, i) => ({
         lived: i < monthsLived
       }));
     }
@@ -67,7 +68,7 @@ export class LifeComponent implements OnInit {
     if (days < 0) {
       totalMonths -= 1;
     }
-console.log(Math.max(totalMonths, 0))
+
     return Math.max(totalMonths, 0);
   }
 }

@@ -1,7 +1,17 @@
 <div class="container">
   <h1>Visualize sua vida em meses</h1>
   <p>Cada coração representa um mês vivido. Informe sua data de nascimento e veja quantos meses já passaram.</p>
-  <p>Considerando que você vai viver 100 anos (1.200 meses)</p>
+  <div class="date-picker">
+    <mat-form-field appearance="fill">
+      <mat-label>Até qual idade?</mat-label>
+      <input matInput
+             placeholder="Informe os anos"
+             type="number"
+             [(ngModel)]="year"
+      >
+      <mat-icon matSuffix>hourglass_top</mat-icon>
+    </mat-form-field>
+  </div>
   <div class="date-picker">
     <mat-form-field appearance="fill">
       <mat-label>Data de Nascimento</mat-label>
